@@ -13,6 +13,7 @@ This requires only a target selector and an outerWidth and outerHeight.  Default
       target: "#mainChart", 
       outerWidth:  800,
       outerHeight:  400
+    }
   ```
 
 Currently the only supported module is an axis component.  It requires an inner height and width, which are derivable as defaults from core_config.  It also requires the name of the data that should be used for the x and y axis.  The default behavior is to start axes at zero, but this can be overridden by passing x_start_at_zero: false or y_start_at_zero: false.
@@ -24,6 +25,6 @@ Currently the only supported module is an axis component.  It requires an inner 
     x: "x", 
     y:"y",
     x_start_at_zero: true,
-    y_start_at_zero: false, //for demonstration of overriding defaults only (generally bad) 
+    y_start_at_zero: false 
   };
 ```
