@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>D3-modules</title>
+        <link rel="stylesheet" type="text/css" href="assets/css/standard-styling.css">
+        <script type="text/javascript" src="assets/libs/d3/d3.v3.js"></script>
+        <script type="text/javascript" src="core-modules/axes.js"></script>
+        <script type="text/javascript" src="core-modules/core.js"></script>
+    </head>
+    <body>
+        <div id="mainChart"></div>
+        <script type="text/javascript">
+          var core_config = {
+            target: "#mainChart", 
+            margin: {top: 20, right: 10, bottom: 30, left: 30},
+            outerWidth:  800,
+            outerHeight:  400
+          }
+
+          var core_mod = new core(core_config);
+          var axes_config = {
+            h: core_mod.config.h, 
+            w:core_mod.config.w, 
+            x: "x", 
+            y:"y",
+            x_start_at_zero: true,
+            y_start_at_zero: false, //for demonstration of overriding defaults only (generally bad) 
+          };
+
+          console.log(axes_config);
+          d3.csv("assets/data/scatter_data.csv", function(data){
+
+            //coerce strings to numerics for proper sorting
+            data.forEach(function(d){
+              d.x = +d.x;
+              d.y = +d.y;
+            });
+
+            var axes_mod = new axes(data, axes_config);
+
+            core_mod.block.selectAll("g")
+              .data(data)
+              .enter()
+              .append("circle")
+              .attr("r", 5)
+              .attr("cx", function(d,i) {
+                return axes_mod.xScale(d.x);
+              }).attr("cy", function(d) {
+                return axes_mod.yScale(d.y);
+              });
+
+            axes_mod.draw_x("#" + core_mod.config.selector);
+            axes_mod.draw_y("#" + core_mod.config.selector);
+            });
+
+        </script>
+    </body>
+</html>  
+
