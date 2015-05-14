@@ -54,7 +54,8 @@
 
             var scatter_mod = new scatter(data, scatter_config);
                        
-            scatter_mod.draw(core_mod.block, data);
+            var scatter_plot = scatter_mod.draw(core_mod.block, data)
+            scatter_plot.style("fill", "teal");
             axes_mod.draw_x("#" + core_mod.config.selector);
             axes_mod.draw_y("#" + core_mod.config.selector);
             });

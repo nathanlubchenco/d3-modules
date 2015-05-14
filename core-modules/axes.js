@@ -21,6 +21,7 @@ function axes(data, config){
   this.data = data;
   this.config = config;
 
+//include('core-modules/scales.js'); //leaving this in here for now because sometimes errors are generated that suggest this is a problem, but then uncommenting it reveals a true error
   //defaults
   config.xOrientation = config.xOrientation === undefined ? "bottom" : config.xOrientation;
   config.yOrientation = config.yOrientation === undefined ? "left" : config.yOrientation;

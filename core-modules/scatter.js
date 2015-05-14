@@ -32,7 +32,7 @@ function scatter(data, config){
   */
 
   this.draw = function(target, data){
-    target.selectAll("g")
+   var plot =  target.selectAll("g")
       .data(data)
       .enter()
       .append("circle")
@@ -42,6 +42,7 @@ function scatter(data, config){
       }).attr("cy", function(d){
         return config.yScale()(d[config.yLabel]);
       });
+   return plot;
   }
   
 }
