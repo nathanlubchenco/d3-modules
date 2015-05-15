@@ -8,6 +8,7 @@
         <script type="text/javascript" src="core-modules/axes.js"></script>
         <script type="text/javascript" src="core-modules/scatter.js"></script>
         <script type="text/javascript" src="core-modules/core.js"></script>
+        <script type="text/javascript" src="core-modules/annotate.js"></script>
     </head>
     <body>
         <div id="mainChart"></div>
@@ -53,8 +54,26 @@
             }
 
             var scatter_mod = new scatter(data, scatter_config);
+
+            var annotate_config = {
+            line: {
+              x1: 400,
+              y1: 300,
+              x2: 25,
+              y2: 25 
+
+            }
+            }
+
+            var annotate_mod =  new annotate(annotate_config);
+
+            var block = core_mod.block;
+
+            annotate_mod.draw_line(block);
+
+            
                        
-            var scatter_plot = scatter_mod.draw(core_mod.block, data)
+            var scatter_plot = scatter_mod.draw(block, data)
             scatter_plot.style("fill", "teal");
             axes_mod.draw_x("#" + core_mod.config.selector);
             axes_mod.draw_y("#" + core_mod.config.selector);
