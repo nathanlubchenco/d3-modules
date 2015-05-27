@@ -31,7 +31,7 @@ function scatter(data, config){
   config.yScale = config.yScale === undefined ? scale_mod_def1.scale_y() : config.yScale;
   */
 
-  this.draw = function(target, data){
+  this.draw = function(target){
    var plot =  target.selectAll("g")
       .data(data)
       .enter()

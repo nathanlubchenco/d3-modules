@@ -9,6 +9,7 @@
         <script type="text/javascript" src="core-modules/scatter.js"></script>
         <script type="text/javascript" src="core-modules/core.js"></script>
         <script type="text/javascript" src="core-modules/annotate.js"></script>
+        <script type="text/javascript" src="core-modules/line.js"></script>
     </head>
     <body>
         <div id="mainChart"></div>
@@ -46,6 +47,9 @@
               d.y = +d.y;
             });
 
+            // sort data by x value for line chart, ideally move this as configurable option to lines module
+            var data = data.sort(function(a,b) { return d3.ascending(a.x, b.x);});
+
             var axes_mod = new axes(data, axes_config);
             var scale_mod = new scale(data, scale_config);
             var scatter_config = {
@@ -65,16 +69,23 @@
             }
             }
 
+            var line_config = {
+            xScale: scale_mod.scale_x,
+            yScale: scale_mod.scale_y
+            }
+
+
             var annotate_mod =  new annotate(annotate_config);
 
             var block = core_mod.block;
-
             annotate_mod.draw_line(block);
-
-            
                        
-            var scatter_plot = scatter_mod.draw(block, data)
+            var scatter_plot = scatter_mod.draw(block)
             scatter_plot.style("fill", "teal");
+
+            var line_mod = new lines(data, line_config);
+            line_mod.draw_line(block);
+            
             axes_mod.draw_x("#" + core_mod.config.selector);
             axes_mod.draw_y("#" + core_mod.config.selector);
             });

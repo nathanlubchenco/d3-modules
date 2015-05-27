@@ -1,3 +1,5 @@
+//not convinced this is a useful module, todo: figure out if its use or something like it, is actually helpful
+
 function annotate(config){
 
    //TODO defaults for no line config = a collapsed point (or if that is still visible, some other solution
