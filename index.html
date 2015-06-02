@@ -5,11 +5,13 @@
         <title>D3-modules</title>
         <link rel="stylesheet" type="text/css" href="assets/css/standard-styling.css">
         <script type="text/javascript" src="assets/libs/d3/d3.v3.js"></script>
+        <script type="text/javascript" src="core-modules/scales.js"></script>
         <script type="text/javascript" src="core-modules/axes.js"></script>
         <script type="text/javascript" src="core-modules/scatter.js"></script>
         <script type="text/javascript" src="core-modules/core.js"></script>
         <script type="text/javascript" src="core-modules/annotate.js"></script>
         <script type="text/javascript" src="core-modules/line.js"></script>
+        <script type="text/javascript" src="core-modules/bar.js"></script>
     </head>
     <body>
         <div id="mainChart"></div>
@@ -74,17 +76,30 @@
             yScale: scale_mod.scale_y
             }
 
+            var bar_config = {
+            core: core_mod,
+            xScale: scale_mod.scale_x,
+            yScale: scale_mod.scale_y
+            }
 
             var annotate_mod =  new annotate(annotate_config);
 
             var block = core_mod.block;
-            annotate_mod.draw_line(block);
+            annotate_mod.draw_line(block)
+              .style("opacity", 0.3);
                        
             var scatter_plot = scatter_mod.draw(block)
-            scatter_plot.style("fill", "teal");
+              scatter_plot.style("fill", "teal")
+              .style("opacity", 0.8);
 
             var line_mod = new lines(data, line_config);
-            line_mod.draw_line(block);
+            line_mod.draw_line(block)
+              .style("opacity", 0.5);
+
+            var bar_mod = new bars(data, bar_config);
+            var bar_chart = bar_mod.draw_bars(block);
+            bar_chart.style("opacity", 0.2).
+              style('fill', 'green');
             
             axes_mod.draw_x("#" + core_mod.config.selector);
             axes_mod.draw_y("#" + core_mod.config.selector);
