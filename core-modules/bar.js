@@ -26,6 +26,7 @@ function bars(data, config){
       .enter()
       .append("rect")
       .attr('y', function(d){
+        console.log(d);
         return config.core.config.h - config.yScale()(d[config.yLabel]); //ugly syntax, need to clean this sort of thing up
       })
       .attr("x", function(d, i){

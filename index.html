@@ -103,8 +103,45 @@
             
             axes_mod.draw_x("#" + core_mod.config.selector);
             axes_mod.draw_y("#" + core_mod.config.selector);
-            });
 
+            /*
+            var brush = d3.svg.brush()
+                        .x(scale_mod.scale_x().clamp(true))
+                        .extent([0,0])
+                        .on('brush', brush_cb)
+
+            block.call(brush)
+
+            function brush_cb(){
+              console.log(data);
+            }
+            */
+
+            block.selectAll("rect")
+              .on("mouseover", hover2)
+              .on("mouseout", mouseOut);
+
+            function hover2(x){
+              console.log(x)
+            }
+  
+            function hover(hoverD) {
+              block.selectAll("rect")
+                .filter(function (d) {
+                    return d == hoverD;
+                    })
+                .style("fill", "#94B8FF");
+            };
+
+            function mouseOut() {
+              block.selectAll("rect")
+                .style("fill", function(d) {
+            //        return depthScale(d.depth);
+                      "yellow";
+                  });
+            };
+
+            });
         </script>
     </body>
 </html>  

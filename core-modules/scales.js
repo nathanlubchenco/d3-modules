@@ -21,8 +21,8 @@ function scale(data, config){
     d3.scale.linear().domain(xExtent).range([0,config.w]);
  
   var yScale = config.y_start_at_zero ?
-    d3.scale.linear().domain([0, yExtent[1]]).range([config.h, 0]) : 
-    d3.scale.linear().domain(yExtent).range([config.h, 0]);
+    d3.scale.linear().domain([0, yExtent[1]]).range([0, config.h]) : 
+    d3.scale.linear().domain(yExtent).range([0, config.h]);
   
   this.scale_x = function(){
     return xScale;
